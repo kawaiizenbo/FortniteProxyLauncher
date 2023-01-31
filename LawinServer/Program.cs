@@ -11,28 +11,30 @@ namespace LawinServer
         private static void Main(string[] args)
         {
             ushort? port = null;
-            if (args.Length == 1)
+            string url = null;
+            if (args.Length == 2)
             {
                 if (ushort.TryParse(args[0], out ushort portValue))
                 {
                     port = portValue;
                 }
+                url = args[1];
             }
             Console.WriteLine("Thanks for using LawinServer made by Lawin#0001 :D\n" +
                 "This launcher was made for LawinServer by PsychoPast.\n" +
                 "Running... PLEASE, don't close the window else the connection will be aborted.");
-            new Program().Run(port);
+            new Program().Run(port, url);
             Console.ReadLine();
         }
 
-        private void Run(ushort? port)
+        private void Run(ushort? port, string url)
         {
             setConsoleCtrlEventHandler = CleanUp;
             SetConsoleCtrlHandler(setConsoleCtrlEventHandler, true);
             proxy = port switch
             {
                 null => new Proxy(),
-                _ => new Proxy((ushort)port)
+                _ => new Proxy((ushort)port, url)
             };
             proxy.StartProxy();
         }

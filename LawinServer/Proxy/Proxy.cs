@@ -29,12 +29,13 @@ namespace LawinServer.Net
 
         private int count = 0;
         #endregion
+        public string url;
+        public Proxy() : this(3551, "localhost") { } //default port
 
-        public Proxy() : this(9999) { } //default port
-
-        public Proxy(ushort port)
+        public Proxy(ushort port, string url)
         {
             appRegistry = new AppRegistry();
+            this.url = url;
 
             GetDefaultProxySettingsValue();
             ConfigureFiddlerSettings(out bool fiddlerCertRegKeysExist);
@@ -138,14 +139,14 @@ namespace LawinServer.Net
                     oSession["x-replywithtunnel"] = "FortniteTunnel";
                     return;
                 }
-                oSession.fullUrl = "https://lawinserverfinal.herokuapp.com" + oSession.PathAndQuery;
+                oSession.fullUrl = url + oSession.PathAndQuery;
 
             }
         }
 
         private void OnAfterSessionComplete(Session oSession)
         {
-            if (oSession.hostname != "lawinserverfinal.herokuapp.com")
+            if (oSession.hostname != url)
             {
                 return;
             }

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Authors>PsychoPast</Authors>
     <Copyright>Copyright © 2020 PsychoPast</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -17,8 +17,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FiddlerCore.Trial" Version="5.0.0" />
-    <PackageReference Include="System.Security.Cryptography.Cng" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+    <PackageReference Include="System.Formats.Asn1" Version="7.0.0" />
+    <PackageReference Include="System.Security.Cryptography.Cng" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +32,18 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BCMakeCert">
+      <HintPath>BCMakeCert.dll</HintPath>
+    </Reference>
+    <Reference Include="FiddlerCore">
+      <HintPath>FiddlerCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.NetworkConnections">
+      <HintPath>Telerik.NetworkConnections.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
